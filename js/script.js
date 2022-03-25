@@ -35,6 +35,10 @@ const app = new Vue({
         activeSlideIndex: 0
     },
 
+    mounted: function () {
+        this.playSlide()
+    },
+
     methods: {
         showPrevSlide() {
             if (this.activeSlideIndex > 0) {
@@ -61,7 +65,16 @@ const app = new Vue({
                 return 'thumb active';
             }
             return 'thumb';
-        }
+        },
+
+        playSlide(){
+            this.interval = setInterval(() => { this.showNextSlide() }, 3000)
+        },
+
+
+        pauseSlide() {
+        clearInterval(this.interval)
+    }
 
 
     }
